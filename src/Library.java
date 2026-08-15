@@ -13,14 +13,31 @@ public class Library{
                 return;
             }
         }
-
         if(bookCount >= 50){
                 System.out.println("Storage full");
                 return; 
         }
-
         books[bookCount]= book;
         bookCount++;
+    }
+
+    /*displayBooks() needs to:
+    Print a heading.
+    loop through the existing books.
+    Access each Book object's fields.
+    Print the information. */
+    public void displayBooks(){
+        System.out.println("Total books Information");
+
+        for(int i=0; i<bookCount; i++){
+            System.out.println(
+                "ID: " + books[i].bookId
+                + " | Title:  " + books[i].title
+                + " | Author:  " + books[i].author
+                + " | Available:  " + books[i].availableCopies
+                + " | Total Books:  " + books[i].totalCopies
+            );
+        }
     }
     
 }

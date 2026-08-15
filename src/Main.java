@@ -11,6 +11,9 @@ public class Main{
 
     Book book3 = new Book(101, "funny", "snehal", 1);
     objLibrary.addBook(book3);
+
+    objLibrary.displayBooks();
+
     }
 
 }
