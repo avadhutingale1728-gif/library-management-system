@@ -18,6 +18,7 @@ public class Book{
     public int totalCopies;
     public int availableCopies;
 
+    // Creates a book and initializes its total and available copies.
     public Book(int bookId, String title, String author, int totalCopies){
         this.bookId = bookId;
         this.title = title;

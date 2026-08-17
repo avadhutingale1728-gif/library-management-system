@@ -1,107 +1,152 @@
+/*
+ * Manages the main operations of the library.
+ *
+ * Responsibilities:
+ * - Add and manage books
+ * - Search and display books
+ * - Register students
+ * - Display registered students
+ * - Handle book checkout and return
+ *
+ * Books and students are stored in arrays with a maximum capacity of 50.
+ */
+public class Library {
+
+    // Books-related fields
+    Book[] books = new Book[50];   // Stores all books registered in the library.
+    int bookCount = 0;             // Keeps track of the number of books currently stored.
+
+    // Student-related fields
+    Student[] students = new Student[50];  // Stores all students registered in the library.
+    int studentCount = 0;                  // Keeps track of the number of students currently registered.
 
 
-public class Library{
-    //Books related fields
-    Book[] books = new Book[50];
-    int bookCount = 0;
-    //Student related fields
-    Student[] students = new Student[50];
-    int studentCount = 0;
+    /*
+     * Adds a new book to the library.
+     *
+     * Before adding:
+     * - Checks whether the book ID already exists.
+     * - Checks whether the library has reached its storage limit.
+     */
+    public void addBook(Book book) {
 
-    public void addBook(Book book){
-        for(int i = 0; i<bookCount; i++){
-            if(book.bookId  == books[i].bookId){
+        // Check for duplicate book ID.
+        for (int i = 0; i < bookCount; i++) {
+
+            if (book.bookId == books[i].bookId) {
                 System.out.println("Duplicate ID");
                 return;
             }
         }
-        if(bookCount >= 50){
-                System.out.println("Storage full");
-                return; 
+
+        // Prevent adding books when the array is full.
+        if (bookCount >= 50) {
+            System.out.println("Storage full");
+            return;
         }
-        books[bookCount]= book;
+
+        // Add the book at the next available position.
+        books[bookCount] = book;
         bookCount++;
     }
 
-    /*displayBooks() needs to:
-    Print a heading.
-    loop through the existing books.
-    Access each Book object's fields.
-    Print the information. */
-    public void displayBooks(){
-        System.out.println("Total books Information");
 
-        for(int i=0; i<bookCount; i++){
+    /*
+     * Displays information about all books currently
+     * registered in the library.
+     */
+    public void displayBooks() {
+
+        System.out.println("Total Books Information");
+
+        for (int i = 0; i < bookCount; i++) {
+
             System.out.println(
                 "ID: " + books[i].bookId
-                + " | Title:  " + books[i].title
-                + " | Author:  " + books[i].author
-                + " | Available:  " + books[i].availableCopies
-                + " | Total Books:  " + books[i].totalCopies
+                + " | Title: " + books[i].title
+                + " | Author: " + books[i].author
+                + " | Available: " + books[i].availableCopies
+                + " | Total Books: " + books[i].totalCopies
             );
         }
     }
 
 
-    public void searchBook(int bookId){
+    /*
+     * Searches for a book using its unique book ID.
+     *
+     * Displays the book details if found; otherwise,
+     * informs the user that the book does not exist.
+     */
+    public void searchBook(int bookId) {
 
-        for(int i = 0; i< bookCount; i++){
-            if(bookId == books[i].bookId){
+        // Search through all registered books.
+        for (int i = 0; i < bookCount; i++) {
+
+            if (bookId == books[i].bookId) {
+
                 System.out.println("Book found!");
+
                 System.out.println(
                     "ID: " + books[i].bookId
                     + " | Title: " + books[i].title
                     + " | Author: " + books[i].author
                     + " | Available: " + books[i].availableCopies
-                    + " | Total: " + books[i].totalCopies);
-                    return;
+                    + " | Total: " + books[i].totalCopies
+                );
+
+                // Stop searching once the requested book is found.
+                return;
             }
         }
-                System.out.println("Book not found!!");
-        
+
+        System.out.println("Book not found!!");
     }
 
-    /*addStudent(student)
-       ↓
-Check existing students
-       ↓
-Does studentId already exist?
-       ├── YES → "Duplicate Student ID" → return
-       │
-       └── NO
-            ↓
-       Is storage full?
-       ├── YES → "Storage full" → return
-       │
-       └── NO
-            ↓
-       students[studentCount] = student
-            ↓
-       studentCount++ */
 
-       public void addStudent(Student student){
-        for(int i=0; i<studentCount;i++){
-            if(student.studentId == students[i].studentId){
+    /*
+     * Registers a new student in the library.
+     *
+     * Before adding:
+     * - Checks whether the student ID already exists.
+     * - Checks whether the student array is full.
+     */
+    public void addStudent(Student student) {
+
+        // Check for duplicate student ID.
+        for (int i = 0; i < studentCount; i++) {
+
+            if (student.studentId == students[i].studentId) {
                 System.out.println("Duplicate Student ID");
                 return;
             }
         }
-        if(studentCount >= 50){
+
+        // Prevent adding students when the array is full.
+        if (studentCount >= 50) {
             System.out.println("Storage Full");
             return;
         }
+
+        // Add the student at the next available position.
         students[studentCount] = student;
         studentCount++;
-       }
+    }
 
-       public void displayStudents(){
+
+    /*
+     * Displays the ID and name of all registered students.
+     */
+    public void displayStudents() {
+
         System.out.println("Total Students Information");
-        for(int i=0; i<studentCount; i++){
+
+        for (int i = 0; i < studentCount; i++) {
+
             System.out.println(
-                "studentID: " + students[i].studentId 
-                + " | name: " + students[i].name
+                "Student ID: " + students[i].studentId
+                + " | Name: " + students[i].name
             );
         }
-       }
-    
+    }
 }
