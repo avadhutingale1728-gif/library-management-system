@@ -60,5 +60,38 @@ public class Library{
                 System.out.println("Book not found!!");
         
     }
+
+    /*addStudent(student)
+       ↓
+Check existing students
+       ↓
+Does studentId already exist?
+       ├── YES → "Duplicate Student ID" → return
+       │
+       └── NO
+            ↓
+       Is storage full?
+       ├── YES → "Storage full" → return
+       │
+       └── NO
+            ↓
+       students[studentCount] = student
+            ↓
+       studentCount++ */
+
+       public void addStudent(Student student){
+        for(int i=0; i<studentCount;i++){
+            if(student.studentId == students[i].studentId){
+                System.out.println("Duplicate Student ID");
+                return;
+            }
+        }
+        if(studentCount >= 50){
+            System.out.println("Storage Full");
+            return;
+        }
+        students[studentCount] = student;
+        studentCount++;
+       }
     
 }

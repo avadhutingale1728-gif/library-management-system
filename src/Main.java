@@ -16,6 +16,15 @@ public class Main{
     objLibrary.searchBook(999);
     objLibrary.searchBook(101);
 
+    //creating 2 student object 
+    Student student1 = new Student(1, "Tejas");
+    Student student2 = new Student(2, "Yash");
+    //Adding 2 students information
+    objLibrary.addStudent(student1);
+    objLibrary.addStudent(student2);
+    //Adding duplicate to check 
+    Student student3 = new Student(1, "Ram");
+    objLibrary.addStudent(student3);
     }
 
 }
