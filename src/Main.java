@@ -14,6 +14,7 @@ public class Main{
 
     objLibrary.displayBooks();
     objLibrary.searchBook(999);
+    objLibrary.searchBook(101);
 
     }
 
