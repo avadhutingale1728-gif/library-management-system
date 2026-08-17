@@ -1,3 +1,5 @@
+
+
 public class Library{
     //Books related fields
     Book[] books = new Book[50];
@@ -38,6 +40,25 @@ public class Library{
                 + " | Total Books:  " + books[i].totalCopies
             );
         }
+    }
+
+
+    public void searchBook(int bookId){
+
+        for(int i = 0; i< bookCount; i++){
+            if(bookId == books[i].bookId){
+                System.out.println("Book found!");
+                System.out.println(
+                    "ID: " + books[i].bookId
+                    + " | Title: " + books[i].title
+                    + " | Author: " + books[i].author
+                    + " | Available: " + books[i].availableCopies
+                    + " | Total: " + books[i].totalCopies);
+                    return;
+            }
+        }
+                System.out.println("Book not found!!");
+        
     }
     
 }

@@ -13,6 +13,7 @@ public class Main{
     objLibrary.addBook(book3);
 
     objLibrary.displayBooks();
+    objLibrary.searchBook(999);
 
     }
 
