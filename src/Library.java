@@ -93,5 +93,15 @@ Does studentId already exist?
         students[studentCount] = student;
         studentCount++;
        }
+
+       public void displayStudents(){
+        System.out.println("Total Students Information");
+        for(int i=0; i<studentCount; i++){
+            System.out.println(
+                "studentID: " + students[i].studentId 
+                + " | name: " + students[i].name
+            );
+        }
+       }
     
 }

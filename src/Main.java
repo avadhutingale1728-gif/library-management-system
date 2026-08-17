@@ -25,6 +25,10 @@ public class Main{
     //Adding duplicate to check 
     Student student3 = new Student(1, "Ram");
     objLibrary.addStudent(student3);
+
+
+    //display information of student
+    objLibrary.displayStudents();
     }
 
 }
