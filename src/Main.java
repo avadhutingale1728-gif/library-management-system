@@ -29,6 +29,10 @@ public class Main{
 
     //display information of student
     objLibrary.displayStudents();
+
+    objLibrary.checkOutBook(1, 101);
+    objLibrary.displayBooks();
+    System.out.println("Borrowed Books by Tejas " + student1.borrowedBookCount);
     }
 
 }
