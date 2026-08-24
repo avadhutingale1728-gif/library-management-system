@@ -33,6 +33,9 @@ public class Main{
     objLibrary.checkOutBook(1, 101);
     objLibrary.displayBooks();
     System.out.println("Borrowed Books by Tejas " + student1.borrowedBookCount);
+
+    objLibrary.displayBorrowedBooks(1);
+    objLibrary.displayBorrowedBooks(2);
     }
 
 }

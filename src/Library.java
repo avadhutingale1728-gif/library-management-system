@@ -164,30 +164,110 @@ public class Library {
     * - Decreases the book's available copies.
     * - Increases the student's borrowed book count.
     */
-    public void checkOutBook(int studentId, int bookId) {
-        for(int i=0; i<studentCount; i++){
-            if(studentId == students[i].studentId){
-                Student student = students[i];
-                for(int j=0; j<bookCount; j++){
-                    if(bookId == books[j].bookId){
-                        if(books[j].availableCopies >0){
-                            if(student.borrowedBookCount < 3){
-                                System.out.println("Student can borrow that book.");
-                                student.borrowedBooks[student.borrowedBookCount] = books[j];
-                                books[j].availableCopies--;
-                                student.borrowedBookCount++;
+    /*
+ * Allows a registered student to borrow a book.
+ *
+ * Before checkout:
+ * - Checks whether the student is registered.
+ * - Checks whether the requested book exists.
+ * - Checks whether the book has available copies.
+ * - Checks whether the student has reached the 3-book limit.
+ *
+ * If all conditions are satisfied:
+ * - Adds the book to the student's borrowed books.
+ * - Decreases the book's available copies.
+ * - Increases the student's borrowed book count.
+ */
+public void checkOutBook(int studentId, int bookId) {
 
-                                return;
-                            }else{
-                                System.out.println("Student cannot borrow more than 3 books.");
-                            }
-                        }else{
-                            System.out.println("Book is not available!!");
-                        }
-                        
-                    }
-                }
-            }
+    Student student = null;
+
+    // Find the student using the student ID.
+    for (int i = 0; i < studentCount; i++) {
+        if (studentId == students[i].studentId) {
+            student = students[i];
+            break;
         }
     }
+
+    // Student does not exist.
+    if (student == null) {
+        System.out.println("Student not found!");
+        return;
+    }
+
+    Book book = null;
+
+    // Find the book using the book ID.
+    for (int i = 0; i < bookCount; i++) {
+        if (bookId == books[i].bookId) {
+            book = books[i];
+            break;
+        }
+    }
+
+    // Book does not exist.
+    if (book == null) {
+        System.out.println("Book not found!");
+        return;
+    }
+
+    // Check whether copies are available.
+    if (book.availableCopies <= 0) {
+        System.out.println("Book is not available!");
+        return;
+    }
+
+    // Check the student's borrowing limit.
+    if (student.borrowedBookCount >= 3) {
+        System.out.println("Student cannot borrow more than 3 books.");
+        return;
+    }
+
+    // Complete the checkout.
+    student.borrowedBooks[student.borrowedBookCount] = book;
+    student.borrowedBookCount++;
+    book.availableCopies--;
+
+    System.out.println("Book borrowed successfully!");
+}
+
+    /*
+ * Displays all books currently borrowed by a student.
+ *
+ * The method:
+ * - Finds the student using the student ID.
+ * - Checks how many books the student has borrowed.
+ * - Displays the details of each borrowed book.
+ */
+    public void displayBorrowedBooks(int studentId) {
+    for(int i = 0; i < studentCount; i++) {
+        if(studentId == students[i].studentId) {
+            Student student = students[i];
+
+            System.out.println("Borrowed Books by " + student.name);
+
+            if(student.borrowedBookCount == 0) {
+                System.out.println("No books borrowed.");
+                return;
+            }
+
+            for(int j = 0; j < student.borrowedBookCount; j++) {
+                Book book = student.borrowedBooks[j];
+
+                System.out.println(
+                    "ID: " + book.bookId +
+                    " | Title: " + book.title +
+                    " | Author: " + book.author
+                );
+            }
+
+            return;
+        }
+    }
+
+    System.out.println("Student not found!");
+    }
+
+
 }

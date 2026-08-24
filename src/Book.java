@@ -25,6 +25,6 @@ public class Book{
         this.author = author;
         this.totalCopies = totalCopies;
         availableCopies = totalCopies;
-    }
 
+    }
 }
