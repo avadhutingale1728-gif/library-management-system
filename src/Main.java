@@ -53,6 +53,8 @@ public class Main{
     objLibrary.removeBook(101);
 
     objLibrary.displayAvailableBooks();
+
+    objLibrary.displayStudentsWithBorrowedBooks();
     }
 
 }

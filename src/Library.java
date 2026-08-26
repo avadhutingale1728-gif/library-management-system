@@ -463,4 +463,38 @@ public void checkOutBook(int studentId, int bookId) {
             System.out.println("No books are currently available.");
         }
     }
+
+    /*
+    * Displays all students who currently have one or more
+    * borrowed books.
+    *
+    * Students who have not borrowed any books are not displayed.
+    */
+    public void displayStudentsWithBorrowedBooks() {
+
+        System.out.println("Students With Borrowed Books");
+
+        boolean studentFound = false;
+
+        // Check all registered students.
+        for (int i = 0; i < studentCount; i++) {
+
+            // Display only students who have borrowed books.
+            if (students[i].borrowedBookCount > 0) {
+
+                System.out.println(
+                    "Student ID: " + students[i].studentId
+                    + " | Name: " + students[i].name
+                    + " | Borrowed Books: " + students[i].borrowedBookCount
+                );
+
+                studentFound = true;
+            }
+        }
+
+        // Inform the user if nobody currently has a borrowed book.
+        if (!studentFound) {
+            System.out.println("No students have borrowed books.");
+        }
+    }
 }
