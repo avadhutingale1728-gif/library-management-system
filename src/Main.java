@@ -46,6 +46,11 @@ public class Main{
 
     objLibrary.removeStudent(2);
     objLibrary.displayStudents();
+
+    objLibrary.removeBook(102);
+    objLibrary.displayBooks();
+
+    objLibrary.removeBook(101);
     }
 
 }

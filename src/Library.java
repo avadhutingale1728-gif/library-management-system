@@ -375,4 +375,57 @@ public void checkOutBook(int studentId, int bookId) {
     // Student ID was not found.
     System.out.println("Student not found!");
     }
+
+
+    /*
+    * Removes a book from the library using its book ID.
+    *
+    * Before removing:
+    * - Checks whether the book exists.
+    * - Checks whether all copies of the book are available.
+    *
+    * A book cannot be removed if one or more copies
+    * are currently borrowed by students.
+    *
+    * If the book can be removed:
+    * - Shifts the remaining books one position left.
+    * - Clears the last array position.
+    * - Decreases the book count.
+    */
+    public void removeBook(int bookId) {
+
+        // Find the book using the book ID.
+        for (int i = 0; i < bookCount; i++) {
+
+            if (bookId == books[i].bookId) {
+
+                Book book = books[i];
+
+                // Check whether any copy of the book is currently borrowed.
+                if (book.availableCopies < book.totalCopies) {
+                    System.out.println(
+                        "Book cannot be removed because some copies are borrowed."
+                    );
+                    return;
+                }
+
+                // Shift all books after the removed book one position left.
+                for (int j = i; j < bookCount - 1; j++) {
+                    books[j] = books[j + 1];
+                }
+
+                // Clear the duplicate reference at the last position.
+                books[bookCount - 1] = null;
+
+                // Decrease the total number of books.
+                bookCount--;
+
+                System.out.println("Book removed successfully!");
+                return;
+            }
+        }
+
+        // Book ID was not found.
+        System.out.println("Book not found!");
+    }
 }
