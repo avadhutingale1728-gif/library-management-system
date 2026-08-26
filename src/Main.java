@@ -43,6 +43,9 @@ public class Main{
 
     objLibrary.searchStudent(1);
     objLibrary.searchStudent(999);
+
+    objLibrary.removeStudent(2);
+    objLibrary.displayStudents();
     }
 
 }

@@ -327,4 +327,52 @@ public void checkOutBook(int studentId, int bookId) {
         System.out.println("STudent not found!!");
     }
 
+    /*
+ * Removes a registered student from the library.
+ *
+ * Before removing:
+ * - Checks whether the student exists.
+ * - Checks whether the student has any borrowed books.
+ *
+ * If the student has no borrowed books:
+ * - Removes the student from the array.
+ * - Shifts remaining students to fill the empty position.
+ * - Decreases the student count.
+ */
+    public void removeStudent(int studentId) {
+
+    // Find the student using the student ID.
+    for (int i = 0; i < studentCount; i++) {
+
+        if (studentId == students[i].studentId) {
+
+            Student student = students[i];
+
+            // A student cannot be removed if they still have borrowed books.
+            if (student.borrowedBookCount > 0) {
+                System.out.println(
+                    "Student cannot be removed because they have borrowed books."
+                );
+                return;
+            }
+
+            // Shift all students after the removed student one position left.
+            for (int j = i; j < studentCount - 1; j++) {
+                students[j] = students[j + 1];
+            }
+
+            // Remove the duplicate reference at the last position.
+            students[studentCount - 1] = null;
+
+            // Decrease the total student count.
+            studentCount--;
+
+            System.out.println("Student removed successfully!");
+            return;
+        }
+    }
+
+    // Student ID was not found.
+    System.out.println("Student not found!");
+    }
 }
