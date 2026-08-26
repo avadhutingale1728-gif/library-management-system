@@ -40,6 +40,9 @@ public class Main{
     objLibrary.returnBook(1, 101);
     objLibrary.returnBook(999, 101);
     objLibrary.returnBook(1, 102);
+
+    objLibrary.searchStudent(1);
+    objLibrary.searchStudent(999);
     }
 
 }

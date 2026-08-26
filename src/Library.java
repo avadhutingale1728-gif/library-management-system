@@ -305,4 +305,26 @@ public void checkOutBook(int studentId, int bookId) {
         System.out.println("Book was not borrowed by this student!");
     }
 
+    /*
+    * Searches for a student using their unique student ID.
+    *
+    * Displays the student's information if found.
+    * Otherwise, informs the user that the student does not exist.
+    */
+    public void searchStudent(int studentId) {
+
+        for(int i = 0; i < studentCount; i++) {
+
+            if(studentId == students[i].studentId) {
+                System.out.println("Student found");
+                System.out.println("Name:- " + students[i].name +
+                    " | StudentId:- " + students[i].studentId +
+                     " | Borrowed Books: " + students[i].borrowedBookCount
+                );
+                return;
+            }
+        }
+        System.out.println("STudent not found!!");
+    }
+
 }
