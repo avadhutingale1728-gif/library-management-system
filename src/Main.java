@@ -36,6 +36,10 @@ public class Main{
 
     objLibrary.displayBorrowedBooks(1);
     objLibrary.displayBorrowedBooks(2);
+
+    objLibrary.returnBook(1, 101);
+    objLibrary.returnBook(999, 101);
+    objLibrary.returnBook(1, 102);
     }
 
 }

@@ -151,20 +151,6 @@ public class Library {
     }
 
     /*
-    * Allows a registered student to borrow a book.
-    *
-    * Before checkout:
-    * - Checks whether the student is registered.
-    * - Checks whether the requested book exists.
-    * - Checks whether the book has available copies.
-    * - Checks whether the student has reached the 3-book limit.
-    *
-    * If all conditions are satisfied:
-    * - Adds the book to the student's borrowed books.
-    * - Decreases the book's available copies.
-    * - Increases the student's borrowed book count.
-    */
-    /*
  * Allows a registered student to borrow a book.
  *
  * Before checkout:
@@ -177,7 +163,7 @@ public class Library {
  * - Adds the book to the student's borrowed books.
  * - Decreases the book's available copies.
  * - Increases the student's borrowed book count.
- */
+    */
 public void checkOutBook(int studentId, int bookId) {
 
     Student student = null;
@@ -269,5 +255,54 @@ public void checkOutBook(int studentId, int bookId) {
     System.out.println("Student not found!");
     }
 
+    /*
+ * Allows a student to return a borrowed book.
+ *
+ * Before returning:
+ * - Checks whether the student is registered.
+ * - Checks whether the student has borrowed the requested book.
+ *
+ * If the book is found:
+ * - Removes the book from the student's borrowed books.
+ * - Increases the book's available copies.
+ * - Decreases the student's borrowed book count.
+ */
+    public void returnBook(int studentId, int bookId) {
+
+    Student student = null;
+
+    // Find the student using the student ID.
+        for(int i = 0; i < studentCount; i++) {
+            if(studentId == students[i].studentId) {
+            student = students[i];
+            break;
+            }
+        }
+
+    // Student does not exist.
+        if(student == null) {
+            System.out.println("Student not found!");
+            return;
+        }
+        // Search through the books borrowed by this student.
+        for(int i = 0; i < student.borrowedBookCount; i++) {
+
+            Book book = student.borrowedBooks[i];
+
+        // Check whether this is the book the student wants to return.
+            if(book.bookId == bookId) {
+
+                for(int j = i; j < student.borrowedBookCount - 1; j++) {
+                    student.borrowedBooks[j] = student.borrowedBooks[j + 1];
+                }
+                student.borrowedBooks[student.borrowedBookCount-1] = null;
+                student.borrowedBookCount--;
+                book.availableCopies++;
+                System.out.println("Book return successfully!!");
+                return;
+            }
+        }
+        System.out.println("Book was not borrowed by this student!");
+    }
 
 }
