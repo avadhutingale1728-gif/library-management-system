@@ -1,62 +1,304 @@
-public class Main{
+import java.util.Scanner;
 
-    public static void main(String[] args){
+public class Main {
 
-    Library objLibrary = new Library();
-    Book book1 = new Book(101, "Rich dad poor dad", "Avadhut", 10);
-    Book book2 = new Book(102, "love ", "Avadhut Ingale", 5);
-    
-    objLibrary.addBook(book1);
-    objLibrary.addBook(book2);
+    public static void main(String[] args) {
 
-    Book book3 = new Book(101, "funny", "snehal", 1);
-    objLibrary.addBook(book3);
+        Scanner scanner = new Scanner(System.in);
+        Library objLibrary = new Library();
 
-    objLibrary.displayBooks();
-    objLibrary.searchBook(999);
-    objLibrary.searchBook(101);
+        int choice;
 
-    //creating 2 student object 
-    Student student1 = new Student(1, "Tejas");
-    Student student2 = new Student(2, "Yash");
-    //Adding 2 students information
-    objLibrary.addStudent(student1);
-    objLibrary.addStudent(student2);
-    //Adding duplicate to check 
-    Student student3 = new Student(1, "Ram");
-    objLibrary.addStudent(student3);
+        do {
+
+            System.out.println("\n=================================");
+            System.out.println("      LIBRARY MANAGEMENT SYSTEM");
+            System.out.println("=================================");
+            System.out.println("1.  Add Book");
+            System.out.println("2.  Display Books");
+            System.out.println("3.  Search Book");
+            System.out.println("4.  Add Student");
+            System.out.println("5.  Display Students");
+            System.out.println("6.  Search Student");
+            System.out.println("7.  Checkout Book");
+            System.out.println("8.  Return Book");
+            System.out.println("9.  Display Borrowed Books");
+            System.out.println("10. Display Available Books");
+            System.out.println("11. Remove Book");
+            System.out.println("12. Remove Student");
+            System.out.println("13. Display Students With Borrowed Books");
+            System.out.println("14. Count Available Copies");
+            System.out.println("0.  Exit");
+
+            System.out.print("\nEnter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+
+                // =========================
+                // 1. ADD BOOK
+                // =========================
+
+                case 1:
+
+                    System.out.print("Enter Book ID: ");
+                    int bookId = scanner.nextInt();
+
+                    scanner.nextLine(); // Consume leftover newline
+
+                    System.out.print("Enter Book Title: ");
+                    String title = scanner.nextLine();
+
+                    System.out.print("Enter Author Name: ");
+                    String author = scanner.nextLine();
+
+                    System.out.print("Enter Total Copies: ");
+                    int totalCopies = scanner.nextInt();
+
+                    Book book = new Book(
+                        bookId,
+                        title,
+                        author,
+                        totalCopies
+                    );
+
+                    objLibrary.addBook(book);
+
+                    break;
 
 
-    //display information of student
-    objLibrary.displayStudents();
+                // =========================
+                // 2. DISPLAY BOOKS
+                // =========================
 
-    objLibrary.checkOutBook(1, 101);
-    objLibrary.displayBooks();
-    System.out.println("Borrowed Books by Tejas " + student1.borrowedBookCount);
+                case 2:
 
-    objLibrary.displayBorrowedBooks(1);
-    objLibrary.displayBorrowedBooks(2);
+                    objLibrary.displayBooks();
 
-    objLibrary.returnBook(1, 101);
-    objLibrary.returnBook(999, 101);
-    objLibrary.returnBook(1, 102);
+                    break;
 
-    objLibrary.searchStudent(1);
-    objLibrary.searchStudent(999);
 
-    objLibrary.removeStudent(2);
-    objLibrary.displayStudents();
+                // =========================
+                // 3. SEARCH BOOK
+                // =========================
 
-    objLibrary.removeBook(102);
-    objLibrary.displayBooks();
+                case 3:
 
-    objLibrary.removeBook(101);
+                    System.out.print("Enter Book ID to search: ");
+                    int searchBookId = scanner.nextInt();
 
-    objLibrary.displayAvailableBooks();
+                    objLibrary.searchBook(searchBookId);
 
-    objLibrary.displayStudentsWithBorrowedBooks();
+                    break;
 
-    objLibrary.countAvailableCopies();
+
+                // =========================
+                // 4. ADD STUDENT
+                // =========================
+
+                case 4:
+
+                    System.out.print("Enter Student ID: ");
+                    int studentId = scanner.nextInt();
+
+                    scanner.nextLine(); // Consume leftover newline
+
+                    System.out.print("Enter Student Name: ");
+                    String studentName = scanner.nextLine();
+
+                    Student student = new Student(
+                        studentId,
+                        studentName
+                    );
+
+                    objLibrary.addStudent(student);
+
+                    break;
+
+
+                // =========================
+                // 5. DISPLAY STUDENTS
+                // =========================
+
+                case 5:
+
+                    objLibrary.displayStudents();
+
+                    break;
+
+
+                // =========================
+                // 6. SEARCH STUDENT
+                // =========================
+
+                case 6:
+
+                    System.out.print("Enter Student ID to search: ");
+                    int searchStudentId = scanner.nextInt();
+
+                    objLibrary.searchStudent(searchStudentId);
+
+                    break;
+
+
+                // =========================
+                // 7. CHECKOUT BOOK
+                // =========================
+
+                case 7:
+
+                    System.out.print("Enter Student ID: ");
+                    int checkoutStudentId = scanner.nextInt();
+
+                    System.out.print("Enter Book ID: ");
+                    int checkoutBookId = scanner.nextInt();
+
+                    objLibrary.checkOutBook(
+                        checkoutStudentId,
+                        checkoutBookId
+                    );
+
+                    break;
+
+
+                // =========================
+                // 8. RETURN BOOK
+                // =========================
+
+                case 8:
+
+                    System.out.print("Enter Student ID: ");
+                    int returnStudentId = scanner.nextInt();
+
+                    System.out.print("Enter Book ID: ");
+                    int returnBookId = scanner.nextInt();
+
+                    objLibrary.returnBook(
+                        returnStudentId,
+                        returnBookId
+                    );
+
+                    break;
+
+
+                // =========================
+                // 9. DISPLAY BORROWED BOOKS
+                // =========================
+
+                case 9:
+
+                    System.out.print(
+                        "Enter Student ID: "
+                    );
+
+                    int borrowedStudentId = scanner.nextInt();
+
+                    objLibrary.displayBorrowedBooks(
+                        borrowedStudentId
+                    );
+
+                    break;
+
+
+                // =========================
+                // 10. DISPLAY AVAILABLE BOOKS
+                // =========================
+
+                case 10:
+
+                    objLibrary.displayAvailableBooks();
+
+                    break;
+
+
+                // =========================
+                // 11. REMOVE BOOK
+                // =========================
+
+                case 11:
+
+                    System.out.print(
+                        "Enter Book ID to remove: "
+                    );
+
+                    int removeBookId = scanner.nextInt();
+
+                    objLibrary.removeBook(removeBookId);
+
+                    break;
+
+
+                // =========================
+                // 12. REMOVE STUDENT
+                // =========================
+
+                case 12:
+
+                    System.out.print(
+                        "Enter Student ID to remove: "
+                    );
+
+                    int removeStudentId = scanner.nextInt();
+
+                    objLibrary.removeStudent(removeStudentId);
+
+                    break;
+
+
+                // =========================
+                // 13. DISPLAY STUDENTS WITH
+                //     BORROWED BOOKS
+                // =========================
+
+                case 13:
+
+                    objLibrary.displayStudentsWithBorrowedBooks();
+
+                    break;
+
+
+                // =========================
+                // 14. COUNT AVAILABLE COPIES
+                // =========================
+
+                case 14:
+
+                    objLibrary.countAvailableCopies();
+
+                    break;
+
+
+                // =========================
+                // 0. EXIT
+                // =========================
+
+                case 0:
+
+                    System.out.println(
+                        "\nExiting Library Management System..."
+                    );
+
+                    break;
+
+
+                // =========================
+                // INVALID CHOICE
+                // =========================
+
+                default:
+
+                    System.out.println(
+                        "Invalid choice! Please try again."
+                    );
+            }
+
+        } while (choice != 0);
+
+
+        System.out.println(
+            "Thank you for using the Library Management System!"
+        );
+
+        scanner.close();
     }
-
 }
