@@ -51,6 +51,8 @@ public class Main{
     objLibrary.displayBooks();
 
     objLibrary.removeBook(101);
+
+    objLibrary.displayAvailableBooks();
     }
 
 }

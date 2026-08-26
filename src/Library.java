@@ -428,4 +428,39 @@ public void checkOutBook(int studentId, int bookId) {
         // Book ID was not found.
         System.out.println("Book not found!");
     }
+
+    /*
+    * Displays all books that currently have at least one
+    * available copy for borrowing.
+    *
+    * Books with zero available copies are not displayed.
+    */
+    public void displayAvailableBooks() {
+
+        System.out.println("Available Books Information");
+
+        boolean availableBookFound = false;
+
+        // Check all registered books.
+        for (int i = 0; i < bookCount; i++) {
+
+            // Display only books with available copies.
+            if (books[i].availableCopies > 0) {
+
+                System.out.println(
+                    "ID: " + books[i].bookId
+                    + " | Title: " + books[i].title
+                    + " | Author: " + books[i].author
+                    + " | Available: " + books[i].availableCopies
+                );
+
+                availableBookFound = true;
+            }
+        }
+
+        // Inform the user if no books are currently available.
+        if (!availableBookFound) {
+            System.out.println("No books are currently available.");
+        }
+    }
 }
