@@ -55,6 +55,8 @@ public class Main{
     objLibrary.displayAvailableBooks();
 
     objLibrary.displayStudentsWithBorrowedBooks();
+
+    objLibrary.countAvailableCopies();
     }
 
 }

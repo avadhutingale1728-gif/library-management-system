@@ -497,4 +497,27 @@ public void checkOutBook(int studentId, int bookId) {
             System.out.println("No students have borrowed books.");
         }
     }
+
+    /*
+    * Calculates the total number of book copies currently
+    * available across all books in the library.
+    *
+    * The method:
+    * - Loops through all registered books.
+    * - Adds the available copies of each book.
+    * - Displays the total available copies.
+    */
+    public void countAvailableCopies() {
+
+        int totalAvailableCopies = 0;
+
+        // Add available copies of every registered book.
+        for (int i = 0; i < bookCount; i++) {
+            totalAvailableCopies += books[i].availableCopies;
+        }
+
+        System.out.println(
+            "Total Available Book Copies: " + totalAvailableCopies
+        );
+    }
 }
